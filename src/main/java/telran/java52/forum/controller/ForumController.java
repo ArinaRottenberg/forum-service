@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import telran.java52.forum.dto.PeriodDto;
 import telran.java52.forum.dto.PostAddDto;
 import telran.java52.forum.dto.PostDto;
 import telran.java52.forum.service.ForumService;
@@ -55,7 +56,9 @@ public class ForumController {
 		}
 
 		@PostMapping("/posts/period")
-		public List<PostDto> findPostsByPeriod(@RequestBody LocalDate dateFrom, @RequestBody LocalDate dateTo) {
+		public List<PostDto> findPostsByPeriod(@PathVariable("period") PeriodDto periodDto) {
+			LocalDate dateFrom = periodDto.getDateFrom();
+		    LocalDate dateTo = periodDto.getDateTo();
 			return forumService.findPostsByPeriod(dateFrom, dateTo);
 		}
 
