@@ -91,7 +91,6 @@ public class PostServiceImpl implements PostService {
 	            .collect(Collectors.toList());
 	}
 
-
 	@Override
 	public Iterable<PostDto> findPostsByTags(List<String> tags) {
 	    List<Post> posts = postRepository.findByTagsIn(tags);
@@ -99,7 +98,6 @@ public class PostServiceImpl implements PostService {
 	            .map(post -> modelMapper.map(post, PostDto.class))
 	            .collect(Collectors.toList());
 	}
-
 
 	@Override
 	public Iterable<PostDto> findPostsByPeriod(DatePeriodDto datePeriodDto) {
@@ -110,6 +108,5 @@ public class PostServiceImpl implements PostService {
 	            .map(post -> modelMapper.map(post, PostDto.class))
 	            .collect(Collectors.toList());
 	}
-
 
 }
