@@ -1,4 +1,4 @@
-package telran.java52.accouting.dto;
+package telran.java52.accounting.dto;
 
 import java.util.Set;
 

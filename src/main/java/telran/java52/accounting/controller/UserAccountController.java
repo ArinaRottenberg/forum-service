@@ -1,4 +1,4 @@
-package telran.java52.accouting.controller;
+package telran.java52.accounting.controller;
 
 import java.security.Principal;
 
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import telran.java52.accouting.dto.RolesDto;
-import telran.java52.accouting.dto.UserDto;
-import telran.java52.accouting.dto.UserEditDto;
-import telran.java52.accouting.dto.UserRegisterDto;
-import telran.java52.accouting.service.UserAccountService;
+import telran.java52.accounting.dto.RolesDto;
+import telran.java52.accounting.dto.UserDto;
+import telran.java52.accounting.dto.UserEditDto;
+import telran.java52.accounting.dto.UserRegisterDto;
+import telran.java52.accounting.service.UserAccountService;
 
 @RestController
 @RequestMapping("/account")
@@ -32,7 +32,6 @@ public class UserAccountController {
 		return userAccountService.register(userRegisterDto);
 	}
 
-	// TODO Don't testing
 	@PostMapping("/login")
 	public UserDto login(Principal principal) {
 		return userAccountService.getUser(principal.getName());
@@ -63,7 +62,6 @@ public class UserAccountController {
 		return userAccountService.changeRolesList(login, role, false);
 	}
 
-	// TODO Don't testing
 	@PutMapping("/password")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void changePassword(Principal principal, @RequestHeader("X-Password") String newPassword) {

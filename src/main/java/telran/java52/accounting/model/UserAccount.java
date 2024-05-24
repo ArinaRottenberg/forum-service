@@ -1,4 +1,4 @@
-package telran.java52.accouting.model;
+package telran.java52.accounting.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,7 +38,7 @@ public class UserAccount {
 	public boolean addRole(String role) {
 		return roles.add(Role.valueOf(role.toUpperCase()));
 	}
-	
+
 	public boolean removeRole(String role) {
 		return roles.remove(Role.valueOf(role.toUpperCase()));
 	}
