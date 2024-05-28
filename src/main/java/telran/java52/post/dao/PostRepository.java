@@ -1,17 +1,18 @@
 package telran.java52.post.dao;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import telran.java52.post.model.Post;
 
 public interface PostRepository extends MongoRepository<Post, String> {
-	List<Post> findByAuthor(String author);
+	Stream<Post> findByAuthorIgnoreCase(String author);
 
-	List<Post> findByTagsIn(List<String> tags);
+	Stream<Post> findByTagsInIgnoreCase(List<String> tags);
 
-	List<Post> findByDateCreatedBetween(LocalDateTime dateFrom, LocalDateTime dateTo);
+	Stream<Post> findByDateCreatedBetween(LocalDate from, LocalDate to);
 
 }

@@ -1,10 +1,7 @@
 package telran.java52.post.service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -85,28 +82,23 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Iterable<PostDto> findPostsByAuthor(String author) {
-	    List<Post> posts = postRepository.findByAuthor(author);
-	    return posts.stream()
-	            .map(post -> modelMapper.map(post, PostDto.class))
-	            .collect(Collectors.toList());
+		return postRepository.findByAuthorIgnoreCase(author)
+				.map(p -> modelMapper.map(p, PostDto.class))
+				.toList();
 	}
 
 	@Override
 	public Iterable<PostDto> findPostsByTags(List<String> tags) {
-	    List<Post> posts = postRepository.findByTagsIn(tags);
-	    return posts.stream()
-	            .map(post -> modelMapper.map(post, PostDto.class))
-	            .collect(Collectors.toList());
+		return postRepository.findByTagsInIgnoreCase(tags)
+				.map(p -> modelMapper.map(p, PostDto.class))
+				.toList();
 	}
 
 	@Override
 	public Iterable<PostDto> findPostsByPeriod(DatePeriodDto datePeriodDto) {
-	    LocalDate dateFrom = datePeriodDto.getDateFrom();
-	    LocalDate dateTo = datePeriodDto.getDateTo();
-	    List<Post> posts = postRepository.findByDateCreatedBetween(dateFrom.atStartOfDay(), dateTo.atTime(LocalTime.MAX));
-	    return posts.stream()
-	            .map(post -> modelMapper.map(post, PostDto.class))
-	            .collect(Collectors.toList());
+		return postRepository.findByDateCreatedBetween(datePeriodDto.getDateFrom(), datePeriodDto.getDateTo())
+				.map(p -> modelMapper.map(p, PostDto.class))
+				.toList();
 	}
 
 }
